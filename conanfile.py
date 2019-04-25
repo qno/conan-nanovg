@@ -15,7 +15,7 @@ class NanoVGConan(ConanFile):
 
     options = {"shared": [True, False], "fons_use_freetype": [True, False]}
     default_options = dict({"shared": False,
-                             "fons_use_freetype": False})
+                            "fons_use_freetype": False})
 
     _pkg_name = "nanovg-master"
     _libname = "nanovg"
@@ -32,7 +32,7 @@ class NanoVGConan(ConanFile):
 
     def build(self):
         cmake = CMake(self)
-        cmake.definitions["FONS_USE_FREETYPE"] = self.options.fons_use_freetype
+        cmake.definitions["FONS_USE_FREETYPE"] = "{}".format(self.options.fons_use_freetype)
         cmake.configure(source_dir=self._pkg_name)
         cmake.build()
 
