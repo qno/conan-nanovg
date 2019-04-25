@@ -1,0 +1,9 @@
+cmake_minimum_required (VERSION 3.5)
+project (NanoVGTest)
+
+include (${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup()
+
+add_executable (nanovgtest nanovgtest.cpp)
+target_compile_definitions(nanovgtest PRIVATE NANOVG_GL2_IMPLEMENTATION NANOVG_GLEW)
+conan_target_link_libraries (nanovgtest)
