@@ -20,6 +20,10 @@ class NanoVGConan(ConanFile):
     _pkg_name = "nanovg-master"
     _libname = "nanovg"
 
+    def requirements(self):
+        self.requires.add("glew/2.1.0@bincrafters/stable")
+        self.requires.add("glfw/3.3@bincrafters/stable")
+
     def source(self):
         url = "https://github.com/memononen/nanovg/archive/master.zip"
         self.output.info("Downloading {}".format(url))
