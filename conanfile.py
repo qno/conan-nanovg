@@ -47,6 +47,11 @@ class NanoVGConan(ConanFile):
     def package_info(self):
         self.cpp_info.libs = [self._libname]
 
+        if not self.settings.os == "Macos":
+            self.cpp_info.defines = ["NANOVG_GLEW"]
+        # the defines for NANOVG_GL2_IMPLEMENTATION etc. are seem to be set by the using application ?
+        # see https://github.com/memononen/nanovg/blob/1f9c8864fc556a1be4d4bf1d6bfe20cde25734b4/src/nanovg_gl.h#L37
+
         if self.options.fons_use_freetype:
             self.cpp_info.libs.append("freetype")
 

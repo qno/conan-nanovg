@@ -7,5 +7,5 @@ include (${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
 add_executable (nanovgtest nanovgtest.cpp)
-target_compile_definitions(nanovgtest PRIVATE NANOVG_GL2_IMPLEMENTATION NANOVG_GLEW)
+target_compile_definitions(nanovgtest PRIVATE NANOVG_GL2_IMPLEMENTATION)
 conan_target_link_libraries (nanovgtest)
