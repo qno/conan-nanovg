@@ -4,18 +4,26 @@ import os
 
 class NanoVGConan(ConanFile):
     name = "NanoVG"
-    version = "master"
+    version = "latest"
     license = "Zlib"
     author = "Mikko Mononen"
     url = "https://github.com/qno/conan-nanovg"
+    homepage = "https://github.com/memononen/nanovg"
     description = "Antialiased 2D vector drawing library on top of OpenGL for UI and visualizations."
 
     settings = "os", "compiler", "build_type", "arch"
     generators = "cmake"
 
-    options = {"shared": [True, False], "fons_use_freetype": [True, False]}
-    default_options = dict({"shared": False,
-                            "fons_use_freetype": False})
+    options = {
+        "shared": [True, False],
+        "fPIC": [True, False],
+        "fons_use_freetype": [True, False]
+        }
+    default_options = {
+        "shared": False,
+         "fPIC": True,
+         "fons_use_freetype": False
+         }
 
     _pkg_name = "nanovg-master"
     _libname = "nanovg"
@@ -31,8 +39,12 @@ class NanoVGConan(ConanFile):
         self._createCMakeLists()
 
     def configure(self):
-        if self._isVisualStudioBuild() and self.options.shared:
-            raise ConanInvalidConfiguration("This library doesn't support dll's on Windows")
+        del self.settings.compiler.libcxx
+
+        if self._isVisualStudioBuild():
+            del self.options.fPIC
+            if self.options.shared:
+                raise ConanInvalidConfiguration("This library doesn't support dll's on Windows")
 
     def build(self):
         cmake = CMake(self)
