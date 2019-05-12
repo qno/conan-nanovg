@@ -231,15 +231,19 @@ jobs:
         GCC 7 Release:
           MINGW_CONFIGURATIONS: '7@x86_64@seh@posix'
           CONAN_BUILD_TYPES: Release
+          CONAN_BUILD_POLICY: missing
         GCC 7 Debug:
           MINGW_CONFIGURATIONS: '7@x86_64@seh@posix'
           CONAN_BUILD_TYPES: Debug
+          CONAN_BUILD_POLICY: missing
         GCC 8 Release:
           MINGW_CONFIGURATIONS: '8@x86_64@seh@posix'
           CONAN_BUILD_TYPES: Release
+          CONAN_BUILD_POLICY: missing
         GCC 8 Debug:
           MINGW_CONFIGURATIONS: '8@x86_64@seh@posix'
           CONAN_BUILD_TYPES: Debug
+          CONAN_BUILD_POLICY: missing
     steps:
       - task: UsePythonVersion@0
         inputs:
